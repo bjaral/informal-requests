@@ -1,0 +1,44 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+
+{% block content %}
+<main class="container mt-4" style="width: 70%">
+
+    <h2>Solicitudes</h2>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Asunto</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Detalles</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="4" class="table-active"><strong>Pendiente</strong></td>
+            </tr>
+            {% for req in pending %}
+                <tr>
+                    <td>{{ req.id }}</td>
+                    <td>{{ req.asunto }}</td>
+                    <td>{{ req.fecha_ocurrencia }} </td>
+                    <td><a href="{% url 'request' req.id %}">Ver detalles</a></td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="4" class="table-active"><strong>Completado</strong></td>
+            </tr>
+            {% for req in solved %}
+                <tr>
+                    <td>{{ req.id }}</td>
+                    <td>{{ req.asunto }}</td>
+                    <td>{{ req.fecha_ocurrencia }}</td>
+                    <td><a href="{% url 'request' req.id %}">Ver detalles</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</main>
+{% endblock %}

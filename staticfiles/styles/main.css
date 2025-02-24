@@ -1,0 +1,26 @@
+header {
+    background-color: #802528;
+    color: rgb(255, 255, 255);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 4rem;
+    margin-right: auto;
+    margin-left: 2rem;
+}
+
+.username {
+    margin-left: auto;
+    margin-right: 2rem;
+}
+
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+.req_form > div {
+    margin-bottom: 1rem;
+}

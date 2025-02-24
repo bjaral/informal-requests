@@ -1,0 +1,59 @@
+header {
+    background-color: #802528;
+    color: rgb(255, 255, 255);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 4rem;
+    margin-right: auto;
+    margin-left: 2rem;
+}
+
+.username {
+    margin-left: auto;
+    margin-right: 2rem;
+}
+
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+.req_form > div {
+    margin-bottom: 1rem;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    background-color: #802528;
+    color: white;
+}
+
+nav ul li {
+    display: inline;
+    list-style-type: none;
+}
+
+nav ul li a {
+    margin-inline: 2rem;
+    text-decoration: none;
+    color: inherit;
+}
+
+nav ul li a:hover {
+    color: #d6d6d6;
+}
+
+textarea.form-control {
+    resize: none;
+}
+
+.large-checkbox {
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    display: inline-block;
+    vertical-align: middle;
+}

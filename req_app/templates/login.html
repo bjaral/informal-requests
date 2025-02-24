@@ -1,0 +1,15 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<main style="justify-content: center; align-items: center; display: flex; flex-direction: column;">
+    <h2>Iniciar Sesión</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% if error %}
+            <p style="color: red;">{{ error }}</p>
+        {% endif %}
+        <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+    </form>
+</main>
+{% endblock %}
