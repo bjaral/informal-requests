@@ -1,35 +1,29 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 15vh auto 10vh;
+    background-color: #ffffff;
+    min-height: 100vh;
+}
+
 header {
     background-color: #802528;
     color: rgb(255, 255, 255);
-    padding: 10px;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
-.logo {
-    height: 4rem;
-    margin-right: auto;
-    margin-left: 2rem;
-}
-
-.username {
-    margin-left: auto;
-    margin-right: 2rem;
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 * {
     font-family: 'Poppins', sans-serif;
-}
-
-.req_form > div {
-    margin-bottom: 1rem;
-}
-
-.menu {
-    display: flex;
-    flex-direction: row;
-    background-color: #802528;
-    color: white;
 }
 
 nav ul li {
@@ -43,7 +37,7 @@ nav ul li a {
     color: inherit;
 }
 
-nav ul li a:hover {
+nav ul li a:hover, header div .btn-primary:hover {
     color: #d6d6d6;
 }
 
@@ -51,9 +45,40 @@ textarea.form-control {
     resize: none;
 }
 
+.logo {
+    height: 4rem;
+    margin-right: auto;
+    margin-left: 2rem;
+}
+
+.session {
+    margin-left: auto;
+    margin-right: 2rem;
+}
+
+.req_form > div {
+    margin-bottom: 1rem;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    background-color: #802528;
+    color: white;
+}
+
 .large-checkbox {
     width: 100%;
     height: calc(1.5em + .75rem + 2px);
     display: inline-block;
     vertical-align: middle;
+}
+
+button .dropdown-toggle {
+    background-color: #802528;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem;
+    cursor: pointer;
 }

@@ -1,12 +1,14 @@
+import datetime
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from .models import Request
-from .forms import CreateNewRequest
+from .forms import RequestForm
 
+# Decorador para redirigir a la lista de solicitudes si el usuario ya está autenticado
 def login_excluded(redirect_to_list):
     def _method_wrapper(view_method):
         def _arguments_wrapper(request, *args, **kwargs):
@@ -43,13 +45,23 @@ def signin(request):
 @login_required(login_url='signin')
 def setRequest(request):
     if request.method == 'POST':
-        print(request.POST)
-        
-        return redirect('getRequests')
+        form = RequestForm(request.POST)
+        if form.is_valid():
+            fecha_ocurrencia = form.cleaned_data['fecha_ocurrencia']
+            new_request = Request(
+                asunto = form.cleaned_data['asunto'],
+                cliente = form.cleaned_data['cliente'],
+                descripcion = form.cleaned_data['descripcion'],
+                fecha_ocurrencia = fecha_ocurrencia,
+                done = form.cleaned_data['done'],
+                user = request.user
+            )
+            new_request.save()
+            return redirect('getRequests')
     
     else:
         return render(request, 'set_req.html', {
-            'form': CreateNewRequest()
+            'form': RequestForm()
         })
 
 @login_required(login_url='signin')
@@ -67,6 +79,20 @@ def getRequests(request):
 def request(request, req_id):
     req = get_object_or_404(Request, pk=req_id)
     
+    if request.method == 'POST':
+        form = RequestForm(request.POST, instance=req)
+        if form.is_valid():
+            req = form.save(commit=False)
+            req.save()
+            return redirect('getRequests')
+    else:
+        form = RequestForm(instance=req)
+    
     return render(request, 'req.html', {
-        'req': req
+        'req': req,
+        'form': form
     })
+    
+def signout(request):
+    logout(request)
+    return redirect('home')

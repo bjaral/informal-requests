@@ -1,9 +1,21 @@
 from django import forms
+from .models import Request
 
-class CreateNewRequest(forms.Form):
-    asunto = forms.CharField(label="Asunto", max_length=200, widget=forms.TextInput(attrs={'class': 'form-control col-md-6'}))
-    cliente = forms.CharField(label="Cliente", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control col-md-6'}))
-    descripcion = forms.CharField(label="Descripcion", widget=forms.Textarea(attrs={'class': 'form-control'}), required=False)
-    fecha = forms.DateField(label="Fecha", widget=forms.DateInput(attrs={'class': 'form-control col-md-6', 'type': 'date'}), required=False)
-    hora = forms.TimeField(label="Hora", widget=forms.TimeInput(attrs={'class': 'form-control col-md-6', 'type': 'time'}), required=False)
-    done = forms.BooleanField(label="Listo", required=False, widget=forms.CheckboxInput(attrs={'class': 'form-check-input large-checkbox col-md-6'}))
+class RequestForm(forms.ModelForm):
+    class Meta:
+        model = Request
+        fields = ['asunto', 'cliente', 'descripcion', 'fecha_ocurrencia', 'done']
+        widgets = {
+            'asunto': forms.TextInput(attrs={'class': 'form-control col-md-6 mb-4'}),
+            'cliente': forms.TextInput(attrs={'class': 'form-control col-md-6 mb-4'}),
+            'descripcion': forms.Textarea(attrs={'class': 'form-control mb-4'}),
+            'fecha_ocurrencia': forms.DateTimeInput(attrs={'class': 'form-control mb-4', 'type': 'datetime-local'}),
+            'done': forms.CheckboxInput(attrs={'class': 'form-check-input large-checkbox col-md-6 mb-4'}),
+        }
+        labels = {
+            'asunto': 'Asunto',
+            'cliente': 'Cliente',
+            'descripcion': 'Descripción',
+            'fecha_ocurrencia': 'Fecha de ocurrencia',
+            'done': '¿Está resuelto?',
+        }

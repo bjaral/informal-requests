@@ -2,7 +2,13 @@
 
 {% block content %}
 <main style="justify-content: center; align-items: center; display: flex; flex-direction: column;">
-    <h2>Bienvenido a Gestor de Solicitudes</h2>
+    <h2>Bienvenido al Gestor de Solicitudes</h2>
+
+    {% if user.username is not None %}
     <p>Por favor, <a href="{% url 'signin' %}">inicia sesión</a> para continuar.</p>
+    {% else %}
+    <p>¡Hola, {{ user.username }}!</p>
+    {% endif %}
+
 </main>
 {% endblock %}
