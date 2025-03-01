@@ -8,4 +8,5 @@ urlpatterns = [
     path('getRequests/', views.getRequests, name='getRequests'),
     path('setRequest/', views.setRequest, name='setRequest'),
     path('request/<int:req_id>/', views.request, name='request'),
+    path('deleteRequest/<int:req_id>/', views.deleteRequest, name='deleteRequest'),
 ]

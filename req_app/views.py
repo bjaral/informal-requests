@@ -96,3 +96,8 @@ def request(request, req_id):
 def signout(request):
     logout(request)
     return redirect('home')
+
+def deleteRequest(request, req_id):
+    req = get_object_or_404(Request, pk=req_id)
+    req.delete()
+    return redirect('getRequests')

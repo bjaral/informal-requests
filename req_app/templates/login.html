@@ -2,14 +2,23 @@
 
 {% block content %}
 <main style="justify-content: center; align-items: center; display: flex; flex-direction: column;">
-    <h2>Iniciar Sesión</h2>
-    <form method="POST">
+    
+    <form method="POST" class="d-flex-column justify-content-center align-items-center" >
         {% csrf_token %}
-        {{ form.as_p }}
+        <h2>Iniciar Sesión</h2>
+
+        <div class="mb-4 d-flex-column">
+            <div>{{ form.username.label_tag }}</div>
+            {{ form.username }}
+        </div>
+        <div class="mb-4 d-flex-column">
+            <div>{{ form.password.label_tag }}</div>
+            {{ form.password }}
+        </div>
         {% if error %}
-            <p style="color: red;">{{ error }}</p>
+            <p class="text-danger">{{ error }}</p>
         {% endif %}
-        <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+        <button type="submit" class="btn btn-primary d-flex m-auto">Iniciar Sesión</button>
     </form>
 </main>
 {% endblock %}

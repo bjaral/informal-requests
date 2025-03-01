@@ -22,6 +22,7 @@
                 <td>{{ req.asunto }}</td>
                 <td>{{ req.fecha_ocurrencia }} </td>
                 <td><a href="{% url 'request' req.id %}">Ver detalles</a></td>
+
             </tr>
         {% endfor %}
         <tr>
